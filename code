@@ -1,0 +1,19 @@
+module verilog_shift_register_test_PISO( din, clk, load, dout );
+
+output reg dout ;
+
+input [15:0] din ;
+input clk ;
+input load ;
+
+reg [15:0]temp;
+
+always @ (clk or load) begin
+ if (load)
+  temp <= din;
+ else begin
+  dout <= temp[0];
+  temp <= {1'b0, temp[15:1]};
+ end
+end
+endmodule  
